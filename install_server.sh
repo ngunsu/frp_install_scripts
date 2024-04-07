@@ -9,11 +9,8 @@ DEFAULT_HTTPS_PORT="5011"
 
 # Function to select architecture
 select_architecture() {
-    echo "Select architecture:"
-    echo "  1) linux_amd64"
-    echo "  2) linux_arm64"
     local choice
-    read -p "Enter choice (1-2) [1]: " choice
+    read -p "Select architecture. Enter choice (1-2) [1]: linux_amd64 [2]: linux_arm64 " choice
     case $choice in
         2) echo "linux_arm64" ;;
         *) echo "linux_amd64" ;;  # Default to linux_amd64
@@ -83,8 +80,8 @@ bindPort = $BIND_PORT
 tcpmuxHTTPConnectPort = $SSH_CLIENTS_PORT 
 vhostHTTPPort = $HTTP_PORT
 vhostHTTPSPort = $HTTPS_PORT
-auth.method = token
-auth.token = $TOKEN
+auth.method = "token"
+auth.token = "$TOKEN"
 EOF
 
 # Create systemd service file
@@ -95,7 +92,7 @@ Description=FRP Server
 After=network.target
 
 [Service]
-ExecStart=/usr/bin/frps -c /etc/frps/frps.ini
+ExecStart=/usr/bin/frps -c /etc/frps/frps.toml
 Restart=on-abort
 
 [Install]
@@ -106,5 +103,8 @@ EOF
 echo "Enabling and starting FRP service..."
 sudo systemctl enable frps
 sudo systemctl start frps
+
+# Clean up
+rm -rf frp*
 
 echo "FRP Server installation and setup completed!"
