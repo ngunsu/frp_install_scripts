@@ -77,7 +77,6 @@ sudo mkdir -p /etc/frps
 echo "Creating FRP configuration filehj..."
 cat << EOF | sudo tee /etc/frps/frps.toml
 bindPort = $BIND_PORT
-tcpmuxHTTPConnectPort = $SSH_CLIENTS_PORT 
 vhostHTTPPort = $HTTP_PORT
 vhostHTTPSPort = $HTTPS_PORT
 auth.method = "token"
