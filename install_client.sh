@@ -80,7 +80,7 @@ echo "Creating systemd service file for FRP client..."
 cat << EOF | sudo tee /etc/systemd/system/frpc.service
 [Unit]
 Description=FRP Client
-After=network.target
+After=network-online.target
 
 [Service]
 ExecStart=/usr/bin/frpc -c /etc/frp/frpc.toml
