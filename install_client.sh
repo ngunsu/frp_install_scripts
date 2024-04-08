@@ -69,7 +69,6 @@ name="httpweb"
 type = "http"
 localIP = "127.0.0.1"
 localPort = 8080
-remotePort = $WEB_REMOTE_PORT
 httpUser = "$HTTP_USER"
 httpPassword = "$HTTP_PASSWORD"
 customDomains = ["$SUBDOMAIN"]
