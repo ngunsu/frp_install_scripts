@@ -83,7 +83,7 @@ After=network-online.target
 
 [Service]
 ExecStart=/usr/bin/frpc -c /etc/frp/frpc.toml
-Restart=on-abort
+Restart=on-failure
 
 [Install]
 WantedBy=multi-user.target
